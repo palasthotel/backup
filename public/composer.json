@@ -1,0 +1,9 @@
+{
+  "name": "palasthotel/backup",
+  "description": "Backup plugin",
+  "autoload": {
+    "psr-4": {
+      "Palasthotel\\WordPress\\Backup\\": "classes"
+    }
+  }
+}
