@@ -32,3 +32,7 @@ With a multisite WordPress setup we only want a single site to do the backups be
 This plugins bringt a new wp cli command with it.
 
 `wp ph-backup create`
+
+`wp ph-backup ls`
+
+`wp ph-backup create`
