@@ -3,6 +3,7 @@
 namespace Palasthotel\WordPress\Backup\View;
 
 use Palasthotel\WordPress\Backup\BackupManager;
+use Palasthotel\WordPress\Backup\Formatter;
 use Palasthotel\WordPress\Backup\Model\BackupEntity;
 use Palasthotel\WordPress\Backup\Plugin;
 use WP_List_Table;
@@ -76,13 +77,10 @@ class BackupsTable extends WP_List_Table {
 			case 'filename':
 				return $item->getFilename();
 			case 'created':
-				$dateFormat = get_option('date_format');
-				$timeFormat = get_option('time_format');
-				return date_i18n("$dateFormat $timeFormat", $item->getFileTime());
+				return Formatter::readableTimestamp( $item->getFileTime());
 			case 'actions':
 				$downloadUrl = $this->ajaxActions()->getDownloadUrl($item);
 				$deleteUrl = $this->ajaxActions()->getDeleteUrl($item);
-				$filename = $item->getFilename();
 				return "<a href='$downloadUrl' target='_blank'>Download</a> | <a class='ph-backup-delete' href='$deleteUrl'>Delete</a>";
 			default:
 				return print_r( $item, true );

@@ -27,7 +27,7 @@ if ( ! defined( 'PH_BACKUPS_SCHEDULE' ) ) {
 }
 
 if ( ! defined( 'PH_BACKUPS_HISTORY_SIZE' ) ) {
-	define( 'PH_BACKUPS_HISTORY_SIZE', "3" );
+	define( 'PH_BACKUPS_HISTORY_SIZE', "48" );
 }
 
 /**
@@ -53,6 +53,26 @@ class Plugin extends Components\Plugin {
 		$this->managementPage = new ManagementPage( $this );
 		$this->notices        = new Notices( $this );
 
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			\WP_CLI::add_command(
+				"ph-backup",
+				__NAMESPACE__."\CLI",
+				array(
+					'shortdesc' => 'PH Backup commands.',
+				)
+			);
+		}
+
+	}
+
+	public function onSiteActivation() {
+		parent::onSiteActivation();
+		$this->schedule->init();
+	}
+
+	public function onSiteDeactivation() {
+		parent::onSiteDeactivation();
+		$this->schedule->unschedule();
 	}
 }
 

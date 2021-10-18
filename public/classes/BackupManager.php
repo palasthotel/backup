@@ -13,7 +13,7 @@ class BackupManager {
 	/**
 	 * @var string
 	 */
-	private $doingBackupFile;
+	private $creatingBackupInfoFile;
 
 	public function __construct() {
 		$this->backupsCache = null;
@@ -22,7 +22,7 @@ class BackupManager {
 			mkdir( PH_BACKUPS_PATH, 0777, true );
 		}
 
-		$this->doingBackupFile = PH_BACKUPS_PATH . "/doing-backup.info";
+		$this->creatingBackupInfoFile = PH_BACKUPS_PATH . "/creating-backup.info";
 	}
 
 	public function backupPathExists(): bool {
@@ -94,27 +94,27 @@ class BackupManager {
 		return unlink( $backup->getFilepath() );
 	}
 
-	public function isDoingBackup(): bool {
-		return file_exists( $this->doingBackupFile );
+	public function isCreatingBackup(): bool {
+		return file_exists( $this->creatingBackupInfoFile );
 	}
 
-	public function setDoingBackup( bool $is ): bool {
+	public function setCreatingBackup( bool $is ): bool {
 		if ( ! $this->backupPathExists() ) {
 			return false;
 		}
-		if ( $is && ! file_exists( $this->doingBackupFile ) ) {
-			$file = fopen( $this->doingBackupFile, "w" );
+		if ( $is && ! file_exists( $this->creatingBackupInfoFile ) ) {
+			$file = fopen( $this->creatingBackupInfoFile, "w" );
 			fwrite( $file, "true" );
 			fclose( $file );
-		} else if ( ! $is && file_exists( $this->doingBackupFile ) ) {
-			unlink( $this->doingBackupFile );
+		} else if ( ! $is && file_exists( $this->creatingBackupInfoFile ) ) {
+			unlink( $this->creatingBackupInfoFile );
 		}
 
 		return true;
 	}
 
-	public function doBackup(): bool {
-		if ( ! $this->setDoingBackup( true ) ) {
+	public function createBackup(): bool {
+		if ( ! $this->setCreatingBackup( true ) ) {
 			return false;
 		}
 
@@ -129,7 +129,7 @@ class BackupManager {
 
 		$success = exec( "mysqldump --user=$user --password=$pw --host=$host $name | gzip -c > $dest" ) !== false;
 
-		$this->setDoingBackup( false );
+		$this->setCreatingBackup( false );
 
 		return $success;
 	}
@@ -145,8 +145,8 @@ class BackupManager {
 			return;
 		}
 
-		for ($i = $keepHistorySize; $i < count($backups); $i++){
-			$this->deleteBackup($backups[$i]);
+		for ( $i = $keepHistorySize; $i < count( $backups ); $i ++ ) {
+			$this->deleteBackup( $backups[ $i ] );
 		}
 	}
 
