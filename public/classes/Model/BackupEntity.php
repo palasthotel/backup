@@ -14,10 +14,14 @@ class BackupEntity {
 	 */
 	private $fileTime;
 
+	/**
+	 * @var false|int
+	 */
+	private $fileSize;
+
 
 	public function __construct(string $filepath) {
 		$this->filepath = $filepath;
-		$this->fileTime = filemtime($filepath);
 	}
 
 	public function getFilename(): string {
@@ -29,7 +33,22 @@ class BackupEntity {
 	}
 
 	public function getFileTime(): int {
+		if($this->fileTime == null){
+			$this->fileTime = filesize($this->filepath);
+		}
 		return $this->fileTime;
+	}
+
+	public function getFileSizeInByte(){
+		if($this->fileSize == null){
+			$this->fileSize = filesize($this->filepath);
+		}
+		return $this->fileSize;
+	}
+
+	public function getFileSizeInMB(){
+
+		return $this->getFileSizeInByte() / pow(1024, 2);
 	}
 
 	public function exists(): bool {

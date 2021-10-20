@@ -59,6 +59,7 @@ class BackupsTable extends WP_List_Table {
 
 		return array(
 			'filename' => 'Filename',
+			'filesize' => 'Size',
 			'created'  => 'Created',
 			'actions'  => 'Actions',
 		);
@@ -76,6 +77,9 @@ class BackupsTable extends WP_List_Table {
 		switch ( $column_name ) {
 			case 'filename':
 				return $item->getFilename();
+			case 'filesize':
+				$size = round($item->getFileSizeInMB(),1);
+				return "$size MB";
 			case 'created':
 				return Formatter::readableTimestamp( $item->getFileTime());
 			case 'actions':
