@@ -21,30 +21,30 @@ class ManagementPage extends Component {
         <div class="wrap">
             <h2>Backups</h2>
             <p><?php
-		        if ( $manager->backupPathExists() ) {
-			        printf(
-				        __( "System path: %s", Plugin::DOMAIN ),
-				        "<code>" . PH_BACKUPS_PATH . "</code>"
-			        );
-		        } else {
-			        printf(
-				        __( "System path not available: %s", Plugin::DOMAIN ),
-				        "<code>" . PH_BACKUPS_PATH . "</code>"
-			        );
-		        }
-		        ?></p>
+				if ( $manager->backupPathExists() ) {
+					printf(
+						__( "System path: %s", Plugin::DOMAIN ),
+						"<code>" . PH_BACKUPS_PATH . "</code>"
+					);
+				} else {
+					printf(
+						__( "System path not available: %s", Plugin::DOMAIN ),
+						"<code>" . PH_BACKUPS_PATH . "</code>"
+					);
+				}
+				?></p>
             <p><?php
-                printf(
-                        __("Schedule: %s", Plugin::DOMAIN),
-                        "<code>".PH_BACKUPS_SCHEDULE."</code>",
-                );
-                ?></p>
+				printf(
+					__( "Schedule: %s", Plugin::DOMAIN ),
+					"<code>" . PH_BACKUPS_SCHEDULE . "</code>",
+				);
+				?></p>
             <p><?php
-		        printf(
-			        __("History size: %s", Plugin::DOMAIN),
-			        "<code>".PH_BACKUPS_HISTORY_SIZE."</code>",
-		        );
-		        ?></p>
+				printf(
+					__( "History size: %s", Plugin::DOMAIN ),
+					"<code>" . PH_BACKUPS_HISTORY_SIZE . "</code>",
+				);
+				?></p>
 			<?php $table->display(); ?>
         </div>
         <script>
@@ -54,16 +54,14 @@ class ManagementPage extends Component {
                     e.preventDefault();
                     const deleteUrl = e.target.getAttribute("href");
 
-                    const yesDeleteIt = confirm("Do you really want to delete this file?");
-                console.debug(yesDeleteIt)
-                    if(yesDeleteIt){
+                    const yesDeleteIt = confirm("<?php _e( "Do you really want to delete this backup?", Plugin::DOMAIN ); ?>");
+                    if (yesDeleteIt) {
                         fetch(deleteUrl, {
                             method: "DELETE",
                         })
                             .then(response => response.json())
                             .then(json => {
-                                console.debug(json);
-                                if(json.success){
+                                if (json.success) {
                                     window.location.reload();
                                 }
                             });

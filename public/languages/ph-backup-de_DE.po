@@ -1,0 +1,104 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PH - Backup\n"
+"POT-Creation-Date: 2021-10-20 09:07+0200\n"
+"PO-Revision-Date: 2021-10-20 09:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ph-backup.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: classes/AjaxActions.php:23 classes/AjaxActions.php:55
+#: classes/AjaxActions.php:79
+msgid "You are not allowed to do that!"
+msgstr "Das dürfen Sie nicht!"
+
+#: classes/AjaxActions.php:32 classes/AjaxActions.php:64
+msgid "Backup not found!"
+msgstr "Backup nicht gefunden!"
+
+#: classes/AjaxActions.php:73
+msgid "Could not delete backup!"
+msgstr "Backup konnte nicht gelöscht werden!"
+
+#: classes/ManagementPage.php:26
+#, php-format
+msgid "System path: %s"
+msgstr "Systempfad: %s"
+
+#: classes/ManagementPage.php:31
+#, php-format
+msgid "System path not available: %s"
+msgstr "Systempfad nicht verfügbar: %s"
+
+#: classes/ManagementPage.php:38
+#, php-format
+msgid "Schedule: %s"
+msgstr "Zeitplan: %s"
+
+#: classes/ManagementPage.php:44
+#, php-format
+msgid "History size: %s"
+msgstr "Anzahl der Sicherungen: %s"
+
+#: classes/ManagementPage.php:57
+msgid "Do you really want to delete this backup?"
+msgstr "Möchten Sie dieses Backup wirklich löschen?"
+
+#: classes/Notices.php:17
+msgid "PH Backup cannot access backup path!"
+msgstr "PH Backup kann nicht auf den Backup-Pfad zugreifen!"
+
+#: classes/View/BackupsTable.php:61
+msgid "Filename"
+msgstr "Dateiname"
+
+#: classes/View/BackupsTable.php:62
+msgid "Size"
+msgstr "Größe"
+
+#: classes/View/BackupsTable.php:63
+msgid "Created"
+msgstr "Erstellt"
+
+#: classes/View/BackupsTable.php:64
+msgid "Actions"
+msgstr "Aktionen"
+
+#: classes/View/BackupsTable.php:91
+msgid "Download"
+msgstr "Herunterladen"
+
+#: classes/View/BackupsTable.php:96
+msgid "Delete"
+msgstr "Löschen"
+
+#. Plugin Name of the plugin/theme
+msgid "PH - Backup"
+msgstr "PH - Backup"
+
+#. Description of the plugin/theme
+msgid "Database backup"
+msgstr "Datenbank-Backup"
+
+#. Author of the plugin/theme
+msgid "PALASTHOTEL by Edward"
+msgstr "PALASTHOTEL von Edward"
+
+#. Author URI of the plugin/theme
+msgid "http://www.palasthotel.de"
+msgstr "http://www.palasthotel.de"

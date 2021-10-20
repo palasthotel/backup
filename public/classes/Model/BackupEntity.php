@@ -34,7 +34,7 @@ class BackupEntity {
 
 	public function getFileTime(): int {
 		if($this->fileTime == null){
-			$this->fileTime = filesize($this->filepath);
+			$this->fileTime = filemtime($this->filepath);
 		}
 		return $this->fileTime;
 	}

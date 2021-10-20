@@ -11,7 +11,7 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       ph-backup
- * Domain Path:       /plugin/languages
+ * Domain Path:       /languages
  */
 
 namespace Palasthotel\WordPress\Backup;
