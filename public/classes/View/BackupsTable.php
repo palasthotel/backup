@@ -76,26 +76,26 @@ class BackupsTable extends WP_List_Table {
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'filename':
-				return $item->getFilename();
+				$downloadUrl = $this->ajaxActions()->getDownloadUrl($item);
+				return sprintf(
+					"<a href='%s' target='_blank' title='%s'>%s</a>",
+					$downloadUrl,
+					__("Download", Plugin::DOMAIN),
+					$item->getFilename()
+				);
 			case 'filesize':
 				$size = round($item->getFileSizeInMB(),1);
 				return "$size MB";
 			case 'created':
 				return Formatter::readableTimestamp( $item->getFileTime());
 			case 'actions':
-				$downloadUrl = $this->ajaxActions()->getDownloadUrl($item);
 				$deleteUrl = $this->ajaxActions()->getDeleteUrl($item);
-				$download = sprintf(
-					"<a href='%s' target='_blank'>%s</a>",
-					$downloadUrl,
-					__("Download", Plugin::DOMAIN)
-				);
 				$delete = sprintf(
 					"<a class='ph-backup-delete' href='%s'>%s</a>",
 					$deleteUrl,
 					__("Delete", Plugin::DOMAIN)
 				);
-				return "$download | $delete";
+				return "$delete";
 			default:
 				return print_r( $item, true );
 		}

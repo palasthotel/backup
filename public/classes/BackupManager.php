@@ -127,7 +127,7 @@ class BackupManager {
 
 		$dest = PH_BACKUPS_PATH . "/$filename.sql.gz";
 
-		$success = exec( "mysqldump --single-transaction=TRUE --user=$user --password=$pw --host=$host $name | gzip -c > $dest" ) !== false;
+		$success = exec( "mysqldump --single-transaction=TRUE --no-tablespaces --user=$user --password=$pw --host=$host $name | gzip -c > $dest" ) !== false;
 
 		$this->setCreatingBackup( false );
 
