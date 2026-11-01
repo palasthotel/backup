@@ -1,5 +1,22 @@
 # PH Backup
 
+> [!WARNING]
+> **This plugin is discontinued and the repository is archived.** It receives no
+> updates, fixes or security reviews.
+>
+> Why:
+>
+> - Our hosting already backs up the database. Hourly full dumps next to the site
+>   add a copy of all personal data, unencrypted, without adding safety.
+> - It runs `mysqldump` through `exec()`, which many hosts disable, and passes the
+>   database password on the command line.
+> - If `PH_BACKUPS_PATH` points into the web root, the dumps are publicly
+>   downloadable under predictable file names.
+>
+> Instead, use your hosting's backups, or `wp db export` from a system cron job
+> into a directory outside the web root. If you still run this plugin, check that
+> `PH_BACKUPS_PATH` is outside the web root and delete old dumps you no longer need.
+
 This plugin will use WordPress schedules to create backups of the database.
 
 **You should definitely use wp cli for schedule execution! https://wp-cron.org**
